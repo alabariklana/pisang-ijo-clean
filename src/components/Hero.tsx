@@ -6,8 +6,8 @@ export function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const images = [
-    'https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/balla-lompoa.webp?alt=media&token=c1b36900-e3c4-447c-8423-f21c5d3f5d70',
-    'https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/pantai-losari-1998.webp?alt=media&token=42d9e2cf-d4e7-43a4-92b5-4aa1382bd80f'
+    'https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/balla-lompoa%20(1).webp?alt=media&token=633210eb-7b3d-4234-ade3-01126d2ba48c',
+    'https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/pantai-losari-1998%20(1).webp?alt=media&token=a04a6199-795b-433d-868a-7c47d2ee7236'
   ];
 
   useEffect(() => {
