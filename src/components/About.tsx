@@ -25,7 +25,7 @@ export function About() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl text-[#1a5540] mb-4 font-medium">
-            Tentang Pisang Ijo Evi
+            Tentang Pisang Ijo
           </h2>
           <div className="w-24 h-1 bg-[#f4d87f] mx-auto mb-6"></div>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
@@ -95,7 +95,7 @@ export function About() {
               />
             </a>
             <a
-              href="#"
+              href="https://www.grab.com/id/download/?pid=inappsharing&c=6-C2ATGJBUN7EXVN&is_retargeting=true&af_force_deeplink=true"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#f5f0e3] rounded-xl p-4 hover:bg-[#e8dcc4] transition-colors"
