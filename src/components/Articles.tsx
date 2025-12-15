@@ -1,31 +1,48 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useState, useEffect } from 'react';
 
-const articles = [
-  {
-    id: 1,
-    title: "Mengenal pisang ijo, dessert khas Makassar",
-    excerpt: "Pisang ijo adalah hidangan penutup tradisional dari Makassar yang terbuat dari pisang yang dibalut dengan adonan tepung berwarna hijau dari daun pandan...",
-    image: "https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/artikel-apa-itu-pisang-ijo.webp?alt=media&token=a8cfac7e-f968-4e54-848a-7940870b6c58",
-    slug: "mengenal-pisang-ijo-dessert-khas-makassar"
-  },
-  {
-    id: 2,
-    title: "Mengenal kegunaan daun pandan",
-    excerpt: "Daun pandan bukan hanya memberikan aroma dan warna hijau alami pada makanan, tetapi juga memiliki berbagai manfaat kesehatan...",
-    image: "https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/artikel-pandan-pisang-ijo.webp?alt=media&token=1d68f131-d896-47ab-bad0-41d418ce1016",
-    slug: "mengenal-kegunaan-daun-pandan"
-  },
-  {
-    id: 3,
-    title: "Resep rahasia pisang ijo enak",
-    excerpt: "Pelajari resep rahasia untuk membuat pisang ijo yang lezat dan autentik seperti di Makassar...",
-    image: "https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/artikel-resep-pisang-ijo.webp?alt=media&token=3ded2fad-9744-42e0-a7fe-aa4f37fcb1dc",
-    slug: "resep-rahasia-pisang-ijo-enak"
-  }
-];
+interface Article {
+  id: number;
+  title: string;
+  excerpt: string;
+  image: string;
+  slug: string;
+}
 
 export function Articles() {
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await fetch('/articles/index.json');
+        if (!response.ok) {
+          throw new Error('Gagal memuat artikel');
+        }
+        const data = await response.json();
+        setArticles(data);
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, []);
+
+  if (loading) {
+    return (
+      <section id="artikel" className="py-20 bg-[#f5f0e3]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1a5540] mx-auto mb-4"></div>
+          <p className="text-[#1a5540]">Memuat artikel...</p>
+        </div>
+      </section>
+    );
+  }
   return (
     <section id="artikel" className="py-20 bg-[#f5f0e3]">
       <Helmet>

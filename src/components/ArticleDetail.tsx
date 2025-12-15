@@ -27,11 +27,9 @@ export function ArticleDetail() {
       if (!slug) return;
 
       try {
-        const response = await fetch(`/articles/${slug}.md`);
-        if (!response.ok) {
-          throw new Error('Artikel tidak ditemukan');
-        }
-        const text = await response.text();
+        // Dynamic import of markdown files
+        const module = await import(`../articles/${slug}.md?raw`);
+        const text = module.default;
         const { data, content } = matter(text);
 
         setArticle({
