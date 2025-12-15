@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 const articles = [
@@ -68,12 +69,12 @@ export function Articles() {
                 <p className="text-gray-600 mb-4 line-clamp-3">
                   {article.excerpt}
                 </p>
-                <a
-                  href={`/artikel/${article.slug}`}
+                <Link
+                  to={`/artikel/${article.slug}`}
                   className="inline-block text-[#1a5540] hover:text-[#2a6550] font-medium"
                 >
                   Baca Selengkapnya →
-                </a>
+                </Link>
               </div>
             </article>
           ))}

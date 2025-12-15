@@ -2,51 +2,131 @@ import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import matter from 'gray-matter';
 
-const articles = {
-  'mengenal-pisang-ijo-dessert-khas-makassar': {
-    title: 'Mengenal pisang ijo, dessert khas Makassar',
-    content: `
-# Mengenal Pisang Ijo, Dessert Khas Makassar
+interface ArticleData {
+  title: string;
+  description: string;
+  canonical: string;
+  image: string;
+  keywords: string;
+  author: string;
+  date: string;
+  content: string;
+}
 
-Pisang ijo adalah salah satu hidangan penutup tradisional yang berasal dari Makassar, Sulawesi Selatan. Hidangan ini telah menjadi bagian dari budaya kuliner Indonesia dan sering disajikan dalam acara-acara spesial.
+export function ArticleDetail() {
+  const { slug } = useParams<{ slug: string }>();
+  const [article, setArticle] = useState<ArticleData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-## Asal Usul
+  useEffect(() => {
+    const fetchArticle = async () => {
+      if (!slug) return;
 
-Pisang ijo pertama kali dikenal di daerah Makassar pada abad ke-19. Kata "ijo" dalam bahasa Makassar berarti hijau, yang merujuk pada warna hijau alami dari daun pandan yang digunakan sebagai bahan pewarna alami.
+      try {
+        const response = await fetch(`/articles/${slug}.md`);
+        if (!response.ok) {
+          throw new Error('Artikel tidak ditemukan');
+        }
+        const text = await response.text();
+        const { data, content } = matter(text);
 
-## Bahan Utama
+        setArticle({
+          ...data,
+          content
+        } as ArticleData);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Terjadi kesalahan');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-- Pisang raja atau pisang kepok yang matang sempurna
-- Tepung beras atau tepung sagu
-- Daun pandan untuk pewarna dan aroma
-- Santan kelapa
-- Gula merah atau gula pasir
+    fetchArticle();
+  }, [slug]);
 
-## Cara Pembuatan Tradisional
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1a5540] mx-auto mb-4"></div>
+          <p className="text-[#1a5540]">Memuat artikel...</p>
+        </div>
+      </div>
+    );
+  }
 
-1. Pisang dikupas dan direbus sebentar
-2. Adonan tepung dicampur dengan sari daun pandan
-3. Pisang dibalut dengan adonan hijau
-4. Dikukus hingga matang
-5. Disajikan dengan saus santan
+  if (error || !article) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-4xl text-[#1a5540] mb-4">Artikel Tidak Ditemukan</h1>
+          <p className="text-gray-600 mb-6">{error}</p>
+          <Link to="/" className="text-[#1a5540] hover:text-[#2a6550]">
+            Kembali ke Beranda
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
-## Makna Budaya
+  return (
+    <div className="min-h-screen bg-[#f5f0e3]">
+      <Helmet>
+        <title>{article.title} - Pisang Ijo Evi</title>
+        <meta name="description" content={article.description} />
+        <meta name="keywords" content={article.keywords} />
+        <meta name="author" content={article.author} />
+        <link rel="canonical" href={article.canonical} />
+        <meta property="og:title" content={article.title} />
+        <meta property="og:description" content={article.description} />
+        <meta property="og:image" content={article.image} />
+        <meta property="og:url" content={article.canonical} />
+        <meta property="article:author" content={article.author} />
+        <meta property="article:published_time" content={article.date} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={article.title} />
+        <meta name="twitter:description" content={article.description} />
+        <meta name="twitter:image" content={article.image} />
+      </Helmet>
 
-Di Makassar, pisang ijo tidak hanya sebagai makanan, tetapi juga simbol keramahan dan kehangatan. Hidangan ini sering disajikan kepada tamu kehormatan sebagai bentuk penghargaan.
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <Link
+          to="/"
+          className="inline-flex items-center text-[#1a5540] hover:text-[#2a6550] mb-6"
+        >
+          <ArrowLeft size={20} className="mr-2" />
+          Kembali ke Beranda
+        </Link>
 
-## Variasi Modern
-
-Sekarang, pisang ijo hadir dalam berbagai variasi, mulai dari yang klasik hingga yang lebih kreatif dengan tambahan topping seperti coklat, keju, atau buah-buahan lainnya.
-    `,
-    image: 'https://source.unsplash.com/random?pisang+ijo'
-  },
-  'mengenal-kegunaan-daun-pandan': {
-    title: 'Mengenal Kegunaan Daun Pandan',
-    content: `
-# Mengenal Kegunaan Daun Pandan
-
-Daun pandan adalah tanaman tropis yang telah lama digunakan dalam kuliner Indonesia. Selain memberikan aroma dan warna hijau alami, daun pandan juga memiliki berbagai manfaat kesehatan.
+        <article className="bg-white rounded-2xl overflow-hidden shadow-lg">
+          <div className="aspect-video overflow-hidden">
+            <img
+              src={article.image}
+              alt={article.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="p-8">
+            <div className="mb-4">
+              <span className="text-sm text-gray-500">{article.date}</span>
+              <span className="text-sm text-gray-500 ml-4">Oleh {article.author}</span>
+            </div>
+            <h1 className="text-3xl md:text-4xl text-[#1a5540] mb-6">
+              {article.title}
+            </h1>
+            <div className="prose prose-lg max-w-none">
+              <ReactMarkdown>{article.content}</ReactMarkdown>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  );
+}
 
 ## Manfaat Kesehatan
 
