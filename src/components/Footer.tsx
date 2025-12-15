@@ -1,5 +1,5 @@
 import { Instagram, Heart } from 'lucide-react';
-import logo from '../assets/692b94be7bdcbbe7a55e608181015379d987020f.png';
+import logo from '../assets/logo.png.png';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
