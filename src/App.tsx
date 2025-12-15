@@ -7,6 +7,7 @@ import { Gallery } from './components/Gallery';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
+import { Articles } from './components/Articles';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
       <Menu />
       <Testimonials />
       <Gallery />
+      <Articles />
       <Contact />
       <Footer />
       <ScrollToTop />
