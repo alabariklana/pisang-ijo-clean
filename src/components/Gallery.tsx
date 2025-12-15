@@ -1,15 +1,15 @@
 export function Gallery() {
   const images = [
     {
-      url: 'https://images.unsplash.com/photo-1695712576568-be85f78a4881?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmRvbmVzaWFuJTIwZGVzc2VydHxlbnwxfHx8fDE3NjUzNTk0NzV8MA&ixlib=rb-4.1.0&q=80&w=1080',
+      url: 'https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/pisang-ijo-product.webp?alt=media&token=ee401a9e-7439-4676-81e0-b368c78e4e4a',
       alt: 'Pisang Ijo segar'
     },
     {
-      url: 'https://images.unsplash.com/photo-1674456720100-0edcdce5572b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVlbiUyMGJhbmFuYSUyMGRlc3NlcnR8ZW58MXx8fHwxNzY1MzU5NDc2fDA&ixlib=rb-4.1.0&q=80&w=1080',
+      url: 'https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/pisang-ijo-stand.webp?alt=media&token=1782a317-4e4c-4707-811a-3ae59b87683b',
       alt: 'Menu spesial'
     },
     {
-      url: 'https://images.unsplash.com/photo-1552590635-27c2c2128abf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmFkaXRpb25hbCUyMGZvb2R8ZW58MXx8fHwxNzY1Mjc0NTAxfDA&ixlib=rb-4.1.0&q=80&w=1080',
+      url: 'https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/pisang-ijo-banner.webp?alt=media&token=2c154155-6348-4821-a4bf-90a7184e2f34',
       alt: 'Kuliner tradisional'
     }
   ];
