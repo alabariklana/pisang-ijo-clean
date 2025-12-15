@@ -1,15 +1,17 @@
+import { Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Menu } from './components/Menu';
 import { Testimonials } from './components/Testimonials';
 import { Gallery } from './components/Gallery';
+import { Articles } from './components/Articles';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
-import { Articles } from './components/Articles';
+import { ArticleDetail } from './components/ArticleDetail';
 
-export default function App() {
+function Home() {
   return (
     <div className="min-h-screen scroll-smooth">
       <Navbar />
@@ -23,5 +25,14 @@ export default function App() {
       <Footer />
       <ScrollToTop />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/artikel/:slug" element={<ArticleDetail />} />
+    </Routes>
   );
 }
