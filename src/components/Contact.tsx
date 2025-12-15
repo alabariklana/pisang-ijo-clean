@@ -107,9 +107,11 @@ export function Contact() {
                   Atau scan QR Code untuk langsung ke Instagram
                 </p>
                 <div className="inline-block bg-white p-4 rounded-xl">
-                  <div className="w-32 h-32 bg-[#f5f0e3] rounded flex items-center justify-center">
-                    <Instagram size={48} className="text-[#1a5540]" />
-                  </div>
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/qr-instagram-pisjo.png?alt=media&token=0a29a15c-500c-42c5-a33b-e187ae533f1a"
+                    alt="QR Code Instagram Pisang Ijo Evi"
+                    className="w-32 h-32 rounded"
+                  />
                 </div>
               </div>
             </div>
