@@ -2,13 +2,11 @@
 title: Mengenal pisang ijo, dessert khas Makassar
 description: Pisang ijo adalah salah satu hidangan penutup tradisional yang berasal dari Makassar, Sulawesi Selatan. Hidangan ini telah menjadi bagian dari budaya kuliner Indonesia.
 canonical: https://pisang-ijo-evi.web.app/artikel/mengenal-pisang-ijo-dessert-khas-makassar
-image: https://source.unsplash.com/random?pisang+ijo
+image: https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/artikel-apa-itu-pisang-ijo.webp?alt=media&token=a8cfac7e-f968-4e54-848a-7940870b6c58
 keywords: pisang ijo, dessert makassar, kuliner sulawesi selatan, makanan tradisional
 author: Pisang Ijo Evi
 date: 2025-12-15
 ---
-
-# Mengenal Pisang Ijo, Dessert Khas Makassar
 
 Pisang ijo adalah salah satu hidangan penutup tradisional yang berasal dari Makassar, Sulawesi Selatan. Hidangan ini telah menjadi bagian dari budaya kuliner Indonesia dan sering disajikan dalam acara-acara spesial.
 

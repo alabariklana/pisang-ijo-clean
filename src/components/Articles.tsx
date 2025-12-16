@@ -80,9 +80,11 @@ export function Articles() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl text-[#1a5540] mb-3 line-clamp-2">
-                  {article.title}
-                </h3>
+                <Link to={`/artikel/${article.slug}`}>
+                  <h3 className="text-xl text-[#1a5540] font-medium mb-3 line-clamp-2 hover:text-[#2a6550] transition-colors cursor-pointer">
+                    {article.title}
+                  </h3>
+                </Link>
                 <p className="text-gray-600 mb-4 line-clamp-3">
                   {article.excerpt}
                 </p>

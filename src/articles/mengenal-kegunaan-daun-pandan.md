@@ -2,13 +2,11 @@
 title: Mengenal Kegunaan Daun Pandan
 description: Daun pandan adalah tanaman tropis yang telah lama digunakan dalam kuliner Indonesia. Selain memberikan aroma dan warna hijau alami, daun pandan juga memiliki berbagai manfaat kesehatan.
 canonical: https://pisang-ijo-evi.web.app/artikel/mengenal-kegunaan-daun-pandan
-image: https://source.unsplash.com/random?daun+pandan
+image: https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/artikel-pandan-pisang-ijo.webp?alt=media&token=1d68f131-d896-47ab-bad0-41d418ce1016
 keywords: daun pandan, manfaat kesehatan, kuliner indonesia, bahan alami
 author: Pisang Ijo Evi
 date: 2025-12-15
 ---
-
-# Mengenal Kegunaan Daun Pandan
 
 Daun pandan adalah tanaman tropis yang telah lama digunakan dalam kuliner Indonesia. Selain memberikan aroma dan warna hijau alami, daun pandan juga memiliki berbagai manfaat kesehatan.
 

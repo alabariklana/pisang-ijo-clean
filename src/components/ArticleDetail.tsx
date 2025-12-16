@@ -3,7 +3,8 @@ import ReactMarkdown from 'react-markdown';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import matter from 'gray-matter';
+import fm from 'front-matter';
+import { Footer } from './Footer';
 
 interface ArticleData {
   title: string;
@@ -30,12 +31,12 @@ export function ArticleDetail() {
         // Dynamic import of markdown files
         const module = await import(`../articles/${slug}.md?raw`);
         const text = module.default;
-        const { data, content } = matter(text);
+        const { attributes, body } = fm(text);
 
         setArticle({
-          ...data,
-          content
-        } as ArticleData);
+          ...(attributes as ArticleData),
+          content: body
+        });
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Terjadi kesalahan');
       } finally {
@@ -48,31 +49,38 @@ export function ArticleDetail() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1a5540] mx-auto mb-4"></div>
-          <p className="text-[#1a5540]">Memuat artikel...</p>
+      <div className="min-h-screen scroll-smooth">
+        <div className="bg-[#f5f0e3] min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1a5540] mx-auto mb-4"></div>
+            <p className="text-[#1a5540]">Memuat artikel...</p>
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }
 
   if (error || !article) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl text-[#1a5540] mb-4">Artikel Tidak Ditemukan</h1>
-          <p className="text-gray-600 mb-6">{error}</p>
-          <Link to="/" className="text-[#1a5540] hover:text-[#2a6550]">
-            Kembali ke Beranda
-          </Link>
+      <div className="min-h-screen scroll-smooth">
+        <div className="bg-[#f5f0e3] min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl text-[#1a5540] mb-4">Artikel Tidak Ditemukan</h1>
+            <p className="text-gray-600 mb-6">{error}</p>
+            <Link to="/" className="text-[#1a5540] hover:text-[#2a6550]">
+              Kembali ke Beranda
+            </Link>
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f0e3]">
+    <div className="min-h-screen scroll-smooth">
+      <div className="bg-[#f5f0e3] min-h-screen">
       <Helmet>
         <title>{article.title} - Pisang Ijo Evi</title>
         <meta name="description" content={article.description} />
@@ -110,18 +118,77 @@ export function ArticleDetail() {
           </div>
           <div className="p-8">
             <div className="mb-4">
-              <span className="text-sm text-gray-500">{article.date}</span>
+              <span className="text-sm text-gray-500">
+                {(article.date as any) instanceof Date ? (article.date as unknown as Date).toLocaleDateString('id-ID') : article.date}
+              </span>
               <span className="text-sm text-gray-500 ml-4">Oleh {article.author}</span>
             </div>
             <h1 className="text-3xl md:text-4xl text-[#1a5540] mb-6">
               {article.title}
             </h1>
-            <div className="prose prose-lg max-w-none">
-              <ReactMarkdown>{article.content}</ReactMarkdown>
+            <div className="prose prose-lg max-w-none prose-headings:text-[#1a5540] prose-p:text-gray-700 prose-li:text-gray-700 prose-strong:text-[#1a5540] prose-a:text-[#2a6550] prose-a:hover:text-[#1a5540]">
+              <ReactMarkdown
+                components={{
+                  h1: ({ children }) => (
+                    <h1 className="text-3xl md:text-4xl text-[#1a5540] font-bold mb-6 mt-8 first:mt-0">
+                      {children}
+                    </h1>
+                  ),
+                  h2: ({ children }) => (
+                    <h2 className="text-2xl text-[#1a5540] font-semibold mb-4 mt-8">
+                      {children}
+                    </h2>
+                  ),
+                  h3: ({ children }) => (
+                    <h3 className="text-xl text-[#1a5540] font-semibold mb-3 mt-6">
+                      {children}
+                    </h3>
+                  ),
+                  p: ({ children }) => (
+                    <p className="text-gray-700 mb-4 leading-relaxed">
+                      {children}
+                    </p>
+                  ),
+                  ul: ({ children }) => (
+                    <ul className="list-disc list-inside mb-4 space-y-2 text-gray-700">
+                      {children}
+                    </ul>
+                  ),
+                  ol: ({ children }) => (
+                    <ol className="list-decimal list-inside mb-4 space-y-2 text-gray-700">
+                      {children}
+                    </ol>
+                  ),
+                  li: ({ children }) => (
+                    <li className="text-gray-700">
+                      {children}
+                    </li>
+                  ),
+                  strong: ({ children }) => (
+                    <strong className="text-[#1a5540] font-semibold">
+                      {children}
+                    </strong>
+                  ),
+                  a: ({ href, children }) => (
+                    <a
+                      href={href}
+                      className="text-[#2a6550] hover:text-[#1a5540] underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {children}
+                    </a>
+                  ),
+                }}
+              >
+                {article.content}
+              </ReactMarkdown>
             </div>
           </div>
         </article>
       </div>
+      </div>
+      <Footer />
     </div>
   );
 }

@@ -5,7 +5,7 @@ export function Gallery() {
       alt: 'Pisang Ijo segar'
     },
     {
-      url: 'https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/pisang-ijo-stand.webp?alt=media&token=1782a317-4e4c-4707-811a-3ae59b87683b',
+      url: 'https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/pisang-ijo-table.webp?alt=media&token=8c9affe3-b3c3-4612-aa5e-2eaed0b3054a',
       alt: 'Menu spesial'
     },
     {
