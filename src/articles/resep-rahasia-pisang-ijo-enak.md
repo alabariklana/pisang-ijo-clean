@@ -1,7 +1,7 @@
 ---
 title: Resep Rahasia Pisang Ijo Enak
 description: Berikut adalah resep autentik pisang ijo khas Makassar yang telah diwariskan turun-temurun. Rahasia kelezatannya terletak pada penggunaan bahan-bahan alami dan teknik pengukusan yang tepat.
-canonical: https://pisang-ijo-evi.web.app/artikel/resep-rahasia-pisang-ijo-enak
+canonical: https://pisangijo.cateringsamarasa.com/artikel/resep-rahasia-pisang-ijo-enak
 image: https://firebasestorage.googleapis.com/v0/b/pisang-ijo-evi.firebasestorage.app/o/artikel-resep-pisang-ijo.webp?alt=media&token=3ded2fad-9744-42e0-a7fe-aa4f37fcb1dc
 keywords: resep pisang ijo, masakan makassar, kuliner indonesia, resep tradisional
 author: Pisang Ijo Evi

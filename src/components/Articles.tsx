@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { useState, useEffect } from 'react';
 
 interface Article {
@@ -45,11 +44,6 @@ export function Articles() {
   }
   return (
     <section id="artikel" className="py-20 bg-[#f5f0e3]">
-      <Helmet>
-        <title>Artikel - Pisang Ijo Evi</title>
-        <meta name="description" content="Baca artikel menarik tentang pisang ijo, dessert khas Makassar, dan resep-resep lezat." />
-        <meta name="keywords" content="pisang ijo, dessert makassar, daun pandan, resep pisang ijo" />
-      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -66,12 +60,6 @@ export function Articles() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((article) => (
             <article key={article.id} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-              <Helmet>
-                <meta property="og:title" content={article.title} />
-                <meta property="og:description" content={article.excerpt} />
-                <meta property="og:image" content={article.image} />
-                <meta property="og:url" content={`https://pisang-ijo-evi.web.app/#artikel/${article.slug}`} />
-              </Helmet>
               <div className="aspect-video overflow-hidden">
                 <img
                   src={article.image}
